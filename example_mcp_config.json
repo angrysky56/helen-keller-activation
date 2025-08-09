@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "helen-keller-activation": {
+      "command": "node",
+      "args": [
+        "/home/ty/Repositories/ai_workspace/helen-keller-activation/build/mcp-server.js"
+      ]
+    }
+  }
+}

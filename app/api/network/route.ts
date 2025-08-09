@@ -37,8 +37,10 @@ export async function POST(request: NextRequest) {
 
       case 'think':
         const response = await network.think(argument);
+        const metrics = network.getMetrics();
         return NextResponse.json({
           response,
+          metrics,
           success: true
         });
 

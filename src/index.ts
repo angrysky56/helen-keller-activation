@@ -314,6 +314,38 @@ export class HelenKellerActivationNetwork {
   }
 
   // Helper methods
+  getNetworkSize(): number {
+    return this.network.size;
+  }
+
+  getMetrics(): { coherence: number; resonance: number; stability: number } {
+    return {
+      coherence: this.coherenceScore,
+      resonance: this.calculateGlobalResonance(),
+      stability: this.calculateGlobalStability()
+    };
+  }
+
+  private calculateGlobalResonance(): number {
+    if (this.network.size === 0) return 0;
+    
+    const totalPotential = Array.from(this.network.values())
+      .reduce((sum, node) => sum + node.potential, 0);
+    
+    return Math.min(totalPotential / this.network.size, 1.0);
+  }
+
+  private calculateGlobalStability(): number {
+    if (this.network.size === 0) return 0;
+    
+    const now = Date.now();
+    const recentThreshold = 5000; // 5 seconds
+    const recentActivations = Array.from(this.network.values())
+      .filter(node => now - node.lastFired < recentThreshold).length;
+    
+    return recentActivations / this.network.size;
+  }
+
   private createNode(embedding: Float32Array, semanticContent?: string): ActivationNode {
     const id = `node_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     const node: ActivationNode = {
