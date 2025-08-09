@@ -1,0 +1,42 @@
+node_modules/
+dist/
+
+# Next.js build output
+.next/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+
+# TypeScript
+*.tsbuildinfo
+
+# Local data
+network-data.json
+test-network.json
+
+# VSCode
+.vscode/
+
+# Misc
+!./package-lock.json
+
+# Ignore top-level lockfiles outside project
+/../package-lock.json
+
+# Output
+*.log
+
+# LM Studio
+lmstudio.log
+lmstudio/
